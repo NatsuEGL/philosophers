@@ -1,0 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/07 15:35:51 by akaabi            #+#    #+#             */
+/*   Updated: 2023/07/16 00:15:23 by akaabi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philosophers.h"
+#include <stdio.h>
+
+int ft_isdigit(int c)
+{
+	if (c >= '0' && c<= '9')
+		return (1);
+	return (0);
+}
+
+int checking_digit(char **s)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (s[i][j])
+		{
+			if (!ft_isdigit(s[i][j]))
+			{
+				write (2, "Error\n", 6);
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+} 
+
+int	ft_atoi(char *str)
+{
+	int		i;
+	int		r;
+	int		s;
+
+	i = 0;
+	r = 0;
+	s = 1;
+	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			s *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		r = r * 10 + (str[i] - '0');
+		i++;
+	}
+	return (r * s);
+}
+
+void fill_to_atoi(int ac, char **av, t_philod *p)
+{
+	p = malloc(sizeof(t_philod));
+	p->num_philo = ft_atoi(av[1]);
+	p->timet_die = ft_atoi(av[2]);
+	p->timet_eat = ft_atoi(av[3]);
+	p->timet_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		p->numte_philo= ft_atoi(av[5]);
+	else
+		return ;
+	fill_philos(p);
+}
+
+int main(int ac, char **av)
+{
+	int 	i;
+	t_philod *p;
+
+	if (ac > 6 || ac < 5)
+	{
+		printf("some is wrong in ur ags\n");
+	}
+	i = 1;
+	p = NULL;
+	if (!checking_digit(&av[i]))
+		return (0);
+	fill_to_atoi(ac, av,p);
+	return (0);
+}
