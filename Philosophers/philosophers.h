@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:43:37 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/19 05:42:09 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/07/21 01:54:28 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ typedef struct s_philos{
 	int 	id;
 	int 	left_f;
 	int 	right_f;
-	int flag;
-	LL		num_eated;
-	LL last_eat;
+	int		num_eaten;
+	int 			flag;
+	LL 		last_eat;
 	pthread_t ph;
 	
 } t_philos;
@@ -36,13 +36,17 @@ typedef struct s_philos{
 typedef struct s_philod{
 	t_philos 		*philos;
 	int 			num_philo;
+	int 			flag1;
+	int 			flag2;
 	int 			timet_die;
 	int 			timet_eat;
 	int 			timet_sleep;
 	int 			mealste_philo;
-	LL		time;
+	LL				time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*print;
+	pthread_mutex_t	*flag;
+	pthread_mutex_t	meals;
 } t_philod ;
 
 //philosophers.c
@@ -58,6 +62,7 @@ void func(t_philod *data, t_philos *p);
 //some_utils.c
 LL get_Time();
 void ft_usleep(t_philos *list, t_philod *data, LL current_time, int time_tosleep);
+void my_printf(t_philod *data, int id, char *msg);
 
 
 #endif

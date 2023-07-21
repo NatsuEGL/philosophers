@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:35:51 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/19 06:20:30 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/07/20 02:48:06 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void fill_to_atoi(int ac, char **av, t_philod *p)
 	p->timet_eat = ft_atoi(av[3]);
 	p->timet_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		p->mealste_philo= ft_atoi(av[5]);
-	// else
-	// 	return ;
+		p->mealste_philo = ft_atoi(av[5]);
+	else
+		p->mealste_philo = -1;
 	fill_philos(p);
 }
 
@@ -96,6 +96,5 @@ int main(int ac, char **av)
 	if (!checking_digit(&av[i]))
 		return (0);
 	fill_to_atoi(ac, av,p);
-	// while (1);
 	return (0);
 }

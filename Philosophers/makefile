@@ -6,14 +6,13 @@
 #    By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 15:35:56 by akaabi            #+#    #+#              #
-#    Updated: 2023/07/19 04:01:43 by akaabi           ###   ########.fr        #
+#    Updated: 2023/07/21 00:44:19 by akaabi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = CC
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
-RM = rm -f
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread
 
 SRC = philosophers.c philo.c some_utils.c
 
