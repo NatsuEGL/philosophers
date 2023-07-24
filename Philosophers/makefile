@@ -6,7 +6,7 @@
 #    By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 15:35:56 by akaabi            #+#    #+#              #
-#    Updated: 2023/07/21 00:44:19 by akaabi           ###   ########.fr        #
+#    Updated: 2023/07/24 07:15:27 by akaabi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 CC = CC
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread
 
-SRC = philosophers.c philo.c some_utils.c
+SRC = philosophers.c philo.c some_utils.c states.c
 
 OBJ = $(SRC:.c=.o)
 

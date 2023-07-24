@@ -6,24 +6,24 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:35:51 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/20 02:48:06 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/07/24 07:29:34 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 #include <stdio.h>
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
-	if (c >= '0' && c<= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-int checking_digit(char **s)
+int	checking_digit(char **s)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (s[i])
@@ -41,7 +41,7 @@ int checking_digit(char **s)
 		i++;
 	}
 	return (1);
-} 
+}
 
 int	ft_atoi(char *str)
 {
@@ -68,7 +68,7 @@ int	ft_atoi(char *str)
 	return (r * s);
 }
 
-void fill_to_atoi(int ac, char **av, t_philod *p)
+void	fill_to_atoi(int ac, char **av, t_philod *p)
 {
 	p = malloc(sizeof(t_philod));
 	p->num_philo = ft_atoi(av[1]);
@@ -82,10 +82,10 @@ void fill_to_atoi(int ac, char **av, t_philod *p)
 	fill_philos(p);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int 	i;
-	t_philod *p;
+	int			i;
+	t_philod	*p;
 
 	if (ac > 6 || ac < 5)
 	{
@@ -95,6 +95,6 @@ int main(int ac, char **av)
 	p = NULL;
 	if (!checking_digit(&av[i]))
 		return (0);
-	fill_to_atoi(ac, av,p);
+	fill_to_atoi(ac, av, p);
 	return (0);
 }
