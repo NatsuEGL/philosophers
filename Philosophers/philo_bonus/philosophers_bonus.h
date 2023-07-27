@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philosophers_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:43:37 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/27 07:55:32 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/07/27 08:03:43 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILOSOPHERS_BONUS_H
+# define PHILOSOPHERS_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <strings.h>
+# include <semaphore.h>
+# include <signal.h>
 # include <pthread.h>
 # include <stdio.h>
 # include <sys/time.h>
@@ -23,28 +25,21 @@
 typedef struct s_philos{
 	struct s_philod	*data;
 	int				id;
-	int				left_f;
-	int				right_f;
 	int				num_eaten;
-	int				flag;
 	long long		last_eat;
-	pthread_t		ph;
 }	t_philos;
 
 typedef struct s_philod{
 	t_philos		*philos;
 	int				num_philo;
-	int				flag1;
-	int				flag2;
 	int				timet_die;
 	int				timet_eat;
 	int				timet_sleep;
 	int				mealste_philo;
 	long long		time;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	print;
-	pthread_mutex_t	flag;
-	pthread_mutex_t	meals;
+	pid_t			*pid;
+	sem_t			*forks;
+	sem_t			*print;
 }	t_philod;
 
 //philosophers.c
@@ -56,6 +51,7 @@ int			ft_isdigit(int c);
 void		*routine(void *arg);
 void		number_ofphilos(t_philod *p, t_philos *list);
 t_philos	*fill_philos(t_philod **d);
+void		states(pid_t *pid, int philo_num);
 void		ft_free(t_philod *data);
 //some_utils.c
 long long	get_time(void);

@@ -6,11 +6,11 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:35:51 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/26 10:32:03 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/07/27 07:58:26 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 int	ft_isdigit(int c)
 {
@@ -102,6 +102,5 @@ int	main(int ac, char **av)
 	p = fill_to_atoi(ac, av);
 	fill_philos(&p);
 	number_ofphilos(p, list);
-	ft_free(p);
 	return (0);
 }
