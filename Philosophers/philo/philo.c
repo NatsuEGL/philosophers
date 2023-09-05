@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:10:48 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/25 07:04:30 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:47:58 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	*routine(void *arg)
 	if (philo->id == 0)
 		data->time = get_time();
 	if (philo->id % 2 != 0)
-		usleep(200);
+		usleep(500);
+	philo->last_eat = get_time();
 	while (philo->num_eaten)
 	{
 		taking_forks(data, philo);
@@ -35,25 +36,23 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-void	number_ofphilos(t_philod *p, t_philos *list)
+int	number_ofphilos(t_philod *p)
 {
 	int	i;
-	int	k;
 
-	list = NULL;
 	initialise(p);
-	k = 0;
 	i = 0;
 	while (i < p->num_philo)
 	{
 		if (pthread_create(&p->philos[i].ph, NULL, &routine, \
 		(void *)&p->philos[i]) != 0)
-			return ;
+			return (-1);
 		pthread_detach(p->philos[i].ph);
 		i++;
 	}
 	my_loop(p);
 	to_destroy(p);
+	return (0);
 }
 
 t_philos	*fill_philos(t_philod **d)
@@ -64,6 +63,8 @@ t_philos	*fill_philos(t_philod **d)
 	data = *d;
 	i = 0;
 	data->philos = malloc(sizeof(t_philos) * data->num_philo);
+	if (!data->philos)
+		return (0);
 	while (i < data->num_philo)
 	{
 		data->philos[i].id = i;

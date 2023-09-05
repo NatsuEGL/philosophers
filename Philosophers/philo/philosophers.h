@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:43:37 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/27 07:55:32 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:14:17 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int			checking_digit(char **s);
 int			ft_isdigit(int c);
 //philo.c
 void		*routine(void *arg);
-void		number_ofphilos(t_philod *p, t_philos *list);
+int			number_ofphilos(t_philod *p);
 t_philos	*fill_philos(t_philod **d);
 void		ft_free(t_philod *data);
 //some_utils.c
 long long	get_time(void);
 void		ft_usleep(t_philos *list, t_philod *data, long long current_time, \
-int time_tosleep);
+int time_to);
 void		my_printf(t_philod *data, int id, char *msg);
 void		my_loop(t_philod *data);
 //states.c

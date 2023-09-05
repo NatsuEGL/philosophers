@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:43:37 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/27 08:03:43 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/04 14:49:57 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ void		taking_forks(t_philod *data, t_philos *list);
 void		eating(t_philod *data, t_philos *list);
 void		sleeping(t_philod *data, t_philos *list);
 void		to_destroy(t_philod *data);
-void		initialise(t_philod *data);
+int			initialise(t_philod *data);
 #endif

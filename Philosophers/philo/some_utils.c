@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 07:04:49 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/27 07:55:22 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/05 14:43:29 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,32 @@ long long	get_time(void)
 }
 
 void	ft_usleep(t_philos *list, t_philod *data, \
-long long current_time, int time_tosleep)
+long long current_time, int time_to)
 {
-	while (get_time() - current_time < time_tosleep)
+	while ((get_time() - current_time) < time_to)
 	{
 		if (get_time() - list->last_eat >= data->timet_die)
 		{
 			pthread_mutex_lock(&data->print);
-			printf ("%lld ms %d is dead\n", get_time() - list->last_eat, \
+			printf ("%lld  %d is died\n", get_time() - list->last_eat, \
 			list->id + 1);
 			pthread_mutex_lock(&data->flag);
 			data->flag1 = 1;
 			pthread_mutex_unlock(&data->flag);
 			return ;
 		}
+		usleep(500);
 	}
+	if (get_time() - list->last_eat >= data->timet_die)
+		{
+			pthread_mutex_lock(&data->print);
+			printf ("%lld  %d is died\n", get_time() - list->last_eat, \
+			list->id + 1);
+			pthread_mutex_lock(&data->flag);
+			data->flag1 = 1;
+			pthread_mutex_unlock(&data->flag);
+			return ;
+		}
 }
 
 void	my_printf(t_philod *data, int id, char *msg)
@@ -60,5 +71,6 @@ void	my_loop(t_philod *data)
 		}
 		pthread_mutex_unlock(&data->meals);
 		pthread_mutex_unlock(&data->flag);
+		usleep(1000);
 	}
 }

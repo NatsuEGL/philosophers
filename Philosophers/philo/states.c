@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 23:57:16 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/25 06:49:27 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:41:34 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	taking_forks(t_philod *data, t_philos *list)
 {
-	list->last_eat = get_time();
 	pthread_mutex_lock(&data->forks[list->right_f]);
 	my_printf(data, list->id, "has taken a fork");
 	if (data->num_philo == 1)
 	{
-		ft_usleep(list, data, get_time(), data->timet_die + 1);
+		ft_usleep(list, data, get_time(), data->timet_die);
 	}
 	pthread_mutex_lock(&data->forks[list->left_f]);
 	my_printf(data, list->id, "has taken a fork");

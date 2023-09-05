@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 07:04:49 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/27 07:56:48 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/05 14:43:24 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,19 @@ long long current_time, int time_tosleep)
 		if (get_time() - list->last_eat >= data->timet_die)
 		{
 			sem_wait(data->print);
-			printf ("%lld ms %d is dead\n", get_time() - list->last_eat, \
+			printf ("%lld  %d is died\n", get_time() - list->last_eat, \
 			list->id + 1);
 			exit (1);
 		}
+		usleep(500);
 	}
+	if (get_time() - list->last_eat >= data->timet_die)
+		{
+			sem_wait(data->print);
+			printf ("%lld  %d is died\n", get_time() - list->last_eat, \
+			list->id + 1);
+			exit (1);
+		}
 }
 
 void	my_printf(t_philod *data, int id, char *msg)

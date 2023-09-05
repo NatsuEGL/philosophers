@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 23:57:16 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/27 08:03:12 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:46:41 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	taking_forks(t_philod *data, t_philos *list)
 {
-	list->last_eat = get_time();
 	sem_wait(data->forks);
 	my_printf(data, list->id, "has taken a fork");
 	if (data->num_philo == 1)
@@ -53,15 +52,18 @@ void	to_destroy(t_philod *data)
 		i++;
 	}
 	sem_close(data->print);
-	exit (1);
+	exit (0);
 }
 
-void	initialise(t_philod *data)
+int	initialise(t_philod *data)
 {
 	sem_unlink("forks");
 	sem_unlink("print");
 	data->forks = sem_open("forks", O_CREAT, 777, data->num_philo);
 	data->print = sem_open("print", O_CREAT, 777, 1);
 	data->pid = malloc(sizeof(pid_t) * (data->num_philo + 1));
+	if (!data->pid)
+		return (-1);
 	data->pid[data->num_philo] = 0;
+	return (0);
 }

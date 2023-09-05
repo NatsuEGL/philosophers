@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 09:10:48 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/27 08:04:12 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/05 15:09:46 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@ void	*routine(void *arg)
 
 	philo = (t_philos *)arg;
 	data = philo->data;
+	if (philo->id == 0)
+		data->time = get_time();
+	if (philo->id % 2 != 0)
+		usleep(500);
+	philo->last_eat = get_time();
 	while (philo->num_eaten)
 	{
 		taking_forks(data, philo);
 		eating(data, philo);
 		sleeping(data, philo);
 	}
-	exit (1);
+	exit (0);
 }
 
 void	states(pid_t *pid, int philo_num)

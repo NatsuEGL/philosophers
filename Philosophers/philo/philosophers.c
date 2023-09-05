@@ -6,7 +6,7 @@
 /*   By: akaabi <akaabi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:35:51 by akaabi            #+#    #+#             */
-/*   Updated: 2023/07/26 10:32:03 by akaabi           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:35:00 by akaabi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int ac, char **av)
 
 	if (ac > 6 || ac < 5)
 	{
-		printf("some is wrong in ur ags\n");
+		printf("something is wrong in ur ags\n");
 		return (0);
 	}
 	i = 1;
@@ -101,7 +101,8 @@ int	main(int ac, char **av)
 		return (0);
 	p = fill_to_atoi(ac, av);
 	fill_philos(&p);
-	number_ofphilos(p, list);
+	if (number_ofphilos(p) == -1)
+		return (0);
 	ft_free(p);
 	return (0);
 }
